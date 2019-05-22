@@ -10,8 +10,6 @@ from banking.navigation import Navigation
 
 
 @click.command()
-# @click.option('--sp_credentials', '-csp', is_flag=True, required=False,
-            #   help='Sparkassen Anmelde Daten erneut eingeben')
 @click.option('--db_credentials', '-cdb', is_flag=True, required=False,
               help='Deutsche Bank Anmeldedaten Daten erneut eingeben')
 def banking(db_credentials):
@@ -20,8 +18,8 @@ def banking(db_credentials):
     #     creds.prompt_sp_credentials()
     #     return
 
-    if not Path(creds.db_credentialFile).is_file():
-        creds.prompt_db_credentials()
+    if not Path(creds.credentialFile).is_file():
+        creds.prompt_credentials()
         return
 
     # if sp_credentials:
@@ -31,7 +29,7 @@ def banking(db_credentials):
 
     if db_credentials:
         click.echo(' Deutsche Bank Anmeldedaten erneuern.')
-        creds.prompt_db_credentials()
+        creds.prompt_credentials()
         return
 
     DataTable()
